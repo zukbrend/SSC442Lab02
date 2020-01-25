@@ -1,10 +1,51 @@
-# load neccessary libraries
+# Load neccessary libraries
 library(tidyverse)
 
-# load the data set
+# Load the data set
 ameslist <- read.table(
-  "https://msudataanalytics.github.io/SSC442/assets/ames.csv",
+  "https://msudataanalytics.github.io/SSC442/Labs/data/ames.csv",
   header = TRUE,
   sep = ","
 )
+# ameslist <- read.csv("ames.csv")
 
+typeof(ameslist)
+unique(ameslist$GarageType)
+
+# Create a matrix to transform GarageType factor data into numeric data
+# https://stackoverflow.com/questions/5616210/model-matrix-with-na-action-null
+current.na.action <- options('na.action')
+options(na.action='na.pass')
+GarageTemp = model.matrix(~ GarageType - 1, data=ameslist)
+options(na.action=current.na.action)
+
+# Combine the numeric matrix and full data frame together
+ameslist <- cbind(
+  ameslist, 
+  GarageTemp
+)
+
+# Create the GarageOutside column in ameslist
+ameslist$GarageOutside <- ifelse(
+  ameslist$GarageTypeDetchd == 1 | ameslist$GarageTypeCarPort == 1, 
+  1, 
+  0
+)
+
+# Check for any NA values in GarageOutside, and change them to a 0
+ameslist$GarageOutside <- ifelse(
+  is.na(ameslist$GarageOutside),
+  0,
+  ameslist$GarageOutside
+)
+
+# Check that the above NA value changes worked
+unique(ameslist$GarageOutside)
+
+################################## Exercise 1 ##################################
+
+### 1 ###
+x <- sapply(ameslist, class)
+y <- sapply(x, function(z) z == "integer")
+names(y) <- NULL
+Ames <- ameslist[ , y]
