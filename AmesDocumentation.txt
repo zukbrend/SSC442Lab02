@@ -1,0 +1,77 @@
+Ames Data Documentation:
+
+Id: 
+
+MSSubClass:
+
+LotFrontage: The number of square feet belonging to the property which connects to the street
+
+LotArea: The total area the house and property spans
+
+OverallQual: A score between 1 and 10 given on the qulaity of the property
+
+OverallCond: A score between 1 and 10 given on the condition of the property
+
+YearBuilt: The year the house was built
+
+YearRemodAdd: The year a licensed remodel was added to the house
+
+MasVnrArea:
+
+BsmntFinSF1: 
+
+BsmntFinSF2:
+
+BsmntUnfSF: The square footage area of an unfinished basement within the house 
+
+TotalBsmntSF: The total square footage area of a basement within the house, being either unfinished or finished
+
+X1stFlrSF: Total first floor (ground floor) square footage
+
+X2ndFlrSF: Total second floor square footage
+
+LowQualFinSF: 
+
+GrLivArea:
+
+BsmntFullBath: Number of full baths in the basement of the house
+
+BsmntHalfBath: Number of half baths uin the basement of the house
+
+FullBath: Total number of full baths in the house
+
+HalfBath: Total number of half baths in the house
+
+BedroomAbvGr: Number of bedrooms above ground in the house
+
+KitchenAbvGr: Number of kitchens above ground in the house
+
+TotRmsAbvGrd: Total number of any kind of rooms above ground in the entire house
+
+Fireplaces: Number of fireplaces in the house
+
+GarageYrBlt: The year the garage was built
+
+GarageCars: The number of cars the garage can hold
+
+GarageArea: The total square foot area housed within the garage
+
+WoodDeckSF: Total square foot area covered by a wood deck belonging to the house/property
+
+OpenPorchSF: Total square foot area covered by an open porch belonging to the house/property
+
+EnclosedPorch: Total square foot area covered by an enclosed porch belonging to the house/property
+
+X3SsnPorch: Total square foot area covered by a three-seasons porch belonging to the house/property
+
+ScreenPorch: Total square foot area covered by a screened porch belonging to the house/property
+
+PoolArea: Total square foot area encompassed by a pool belonging to the house/property
+
+MiscVal: 
+
+MoSold: Numeric code for the month the house was last sold in, takes values 1 to 12
+
+YrSold: The year the house was last sold in 
+
+SalePrice: The price in US dollars the house last sold for

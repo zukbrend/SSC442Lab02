@@ -49,3 +49,5 @@ x <- sapply(ameslist, class)
 y <- sapply(x, function(z) z == "integer")
 names(y) <- NULL
 Ames <- ameslist[ , y]
+
+
