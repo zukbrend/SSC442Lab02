@@ -1,7 +1,5 @@
 Ames Data Documentation:
 
-Id: 
-
 MSSubClass: Classifies the type of property for sale.
 
 LotFrontage: The number of square feet connected to the property.
@@ -16,15 +14,13 @@ YearBuilt: Year property was built.
 
 YearRemodAdd: Year of property remodel.
 
-MasVnrArea: ?
-
 BsmntFinSF1: Finished basement square footage (Type 1).
 
 BsmntFinSF2: Finished basement square footage (Type 2).
 
 BsmntUnfSF: Unfinished basement square footage.
 
-TotalBsmntSF: Total square footage of the basement.
+TotalBsmtSF: Total square footage of the basement.
 
 X1stFlrSF: First floor square footage.
 
@@ -67,8 +63,6 @@ X3SsnPorch: Three season porch square footage.
 ScreenPorch: Screen porch square footage.
 
 PoolArea: Pool area in square feet.
-
-MiscVal: ?
 
 MoSold: Month sold (MM).
 

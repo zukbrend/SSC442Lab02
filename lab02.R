@@ -50,4 +50,14 @@ y <- sapply(x, function(z) z == "integer")
 names(y) <- NULL
 Ames <- ameslist[ , y]
 
+Ames$Id <- NULL
+Ames$MasVnrArea <- NULL
+Ames$MiscVal <- NULL
 
+### 2 ###
+scatterMatrix <- pairs(
+  SalePrice ~ LotArea + OverallQual + OverallCond + YearBuilt + FullBath 
+    + BedroomAbvGr + TotalBsmtSF + Fireplaces + GarageCars + GarageArea + TotRmsAbvGrd
+    + YearRemodAdd,
+  data=Ames
+)
