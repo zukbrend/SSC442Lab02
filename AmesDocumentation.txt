@@ -2,76 +2,76 @@ Ames Data Documentation:
 
 Id: 
 
-MSSubClass:
+MSSubClass: Classifies the type of property for sale.
 
-LotFrontage: The number of square feet belonging to the property which connects to the street
+LotFrontage: The number of square feet connected to the property.
 
-LotArea: The total area the house and property spans
+LotArea: Lot size in square feet.
 
-OverallQual: A score between 1 and 10 given on the qulaity of the property
+OverallQual: Rating of the overall quality of the property.
 
-OverallCond: A score between 1 and 10 given on the condition of the property
+OverallCond: Rating of the overall condition of the property.
 
-YearBuilt: The year the house was built
+YearBuilt: Year property was built.
 
-YearRemodAdd: The year a licensed remodel was added to the house
+YearRemodAdd: Year of property remodel.
 
-MasVnrArea:
+MasVnrArea: ?
 
-BsmntFinSF1: 
+BsmntFinSF1: Finished basement square footage (Type 1).
 
-BsmntFinSF2:
+BsmntFinSF2: Finished basement square footage (Type 2).
 
-BsmntUnfSF: The square footage area of an unfinished basement within the house 
+BsmntUnfSF: Unfinished basement square footage.
 
-TotalBsmntSF: The total square footage area of a basement within the house, being either unfinished or finished
+TotalBsmntSF: Total square footage of the basement.
 
-X1stFlrSF: Total first floor (ground floor) square footage
+X1stFlrSF: First floor square footage.
 
-X2ndFlrSF: Total second floor square footage
+X2ndFlrSF: Second floor square footage.
 
-LowQualFinSF: 
+LowQualFinSF: Low quality finished square footage.
 
-GrLivArea:
+GrLivArea: Ground living area square footage.
 
-BsmntFullBath: Number of full baths in the basement of the house
+BsmntFullBath: Basement full baths.
 
-BsmntHalfBath: Number of half baths uin the basement of the house
+BsmntHalfBath: Basement half baths.
 
-FullBath: Total number of full baths in the house
+FullBath: Full baths above ground.
 
-HalfBath: Total number of half baths in the house
+HalfBath: Half baths above ground.
 
-BedroomAbvGr: Number of bedrooms above ground in the house
+BedroomAbvGr: Bedrooms above ground.
 
-KitchenAbvGr: Number of kitchens above ground in the house
+KitchenAbvGr: Kitchens above ground.
 
-TotRmsAbvGrd: Total number of any kind of rooms above ground in the entire house
+TotRmsAbvGrd: Total rooms above ground.
 
-Fireplaces: Number of fireplaces in the house
+Fireplaces: Number of fireplaces.
 
-GarageYrBlt: The year the garage was built
+GarageYrBlt: Year garage was built.
 
-GarageCars: The number of cars the garage can hold
+GarageCars: Car capacity of garage.
 
-GarageArea: The total square foot area housed within the garage
+GarageArea: Garage square footage.
 
-WoodDeckSF: Total square foot area covered by a wood deck belonging to the house/property
+WoodDeckSF: Wood deck square footage.
 
-OpenPorchSF: Total square foot area covered by an open porch belonging to the house/property
+OpenPorchSF: Open porch square footage.
 
-EnclosedPorch: Total square foot area covered by an enclosed porch belonging to the house/property
+EnclosedPorch: Enclosed porch square footage.
 
-X3SsnPorch: Total square foot area covered by a three-seasons porch belonging to the house/property
+X3SsnPorch: Three season porch square footage.
 
-ScreenPorch: Total square foot area covered by a screened porch belonging to the house/property
+ScreenPorch: Screen porch square footage.
 
-PoolArea: Total square foot area encompassed by a pool belonging to the house/property
+PoolArea: Pool area in square feet.
 
-MiscVal: 
+MiscVal: ?
 
-MoSold: Numeric code for the month the house was last sold in, takes values 1 to 12
+MoSold: Month sold (MM).
 
-YrSold: The year the house was last sold in 
+YrSold: Year sold (YYYY).
 
-SalePrice: The price in US dollars the house last sold for
+SalePrice: Sale price of the property.
