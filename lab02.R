@@ -70,14 +70,24 @@ correlates <- cor(correlateVariables)
 correlates
 
 ### 4 ###
-PriceLivAreaScatter <- ggplot(
-  data=Ames,
-  mapping=aes(
-    x=GrLivArea,
-    y=SalePrice
-  )
-) + geom_point()
+plot(
+  x=Ames$GrLivArea,
+  y=Ames$SalePrice,
+  xlab="Ground Floor Living Area in Square Feet",
+  ylab="Sale Price in US Dollars"
+)
 
-GrLivAreaSLR <- lm(SalePrice ~ GrLivArea, data=Ames)
-summary(GrLivAreaSLR)
+
+x <- Ames$GrLivArea
+y <- Ames$SalePrice
+
+Sxy = sum((x - mean(x)) * (y - mean(y)))
+Sxx = sum((x - mean(x)) ^ 2)
+Syy = sum((y - mean(y)) ^ 2)
+
+beta_1_hat = Sxy / Sxx
+beta_0_hat = mean(y) - beta_1_hat * mean(x)
+
+abline(beta_0_hat, beta_1_hat, col="blue")
+
 
