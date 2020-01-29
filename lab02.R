@@ -56,8 +56,28 @@ Ames$MiscVal <- NULL
 
 ### 2 ###
 scatterMatrix <- pairs(
-  SalePrice ~ LotArea + OverallQual + OverallCond + YearBuilt + FullBath 
+  SalePrice ~ OverallQual + OverallCond + YearBuilt + FullBath 
     + BedroomAbvGr + TotalBsmtSF + Fireplaces + GarageCars + GarageArea + TotRmsAbvGrd
-    + YearRemodAdd,
+    + YearRemodAdd + LotArea,
   data=Ames
 )
+
+### 3 ###
+correlateVariables <- Ames[ , c("LotArea", "OverallQual", "OverallCond", "YearBuilt", "FullBath", 
+                                "BedroomAbvGr", "TotalBsmtSF", "Fireplaces", "GarageCars", "GarageArea", 
+                                "TotRmsAbvGrd", "YearRemodAdd")]
+correlates <- cor(correlateVariables)
+correlates
+
+### 4 ###
+PriceLivAreaScatter <- ggplot(
+  data=Ames,
+  mapping=aes(
+    x=GrLivArea,
+    y=SalePrice
+  )
+) + geom_point()
+
+GrLivAreaSLR <- lm(SalePrice ~ GrLivArea, data=Ames)
+summary(GrLivAreaSLR)
+
