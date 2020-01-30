@@ -1,0 +1,201 @@
+---
+title: "SSC 442 Lab 02"
+author: "Team 7"
+date: "1/30/2020"
+output: pdf_document
+---
+
+```{r include=FALSE}
+library(tidyverse)
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r include=FALSE}
+ameslist <- read.table(
+  "https://msudataanalytics.github.io/SSC442/Labs/data/ames.csv",
+  header = TRUE,
+  sep = ","
+)
+
+typeof(ameslist)
+unique(ameslist$GarageType)
+
+options(na.action='na.pass')
+GarageTemp = model.matrix(~ GarageType - 1, data=ameslist)
+
+ameslist <- cbind(
+  ameslist, 
+  GarageTemp
+)
+
+ameslist$GarageOutside <- ifelse(
+  ameslist$GarageTypeDetchd == 1 | ameslist$GarageTypeCarPort == 1, 
+  1, 
+  0
+)
+
+ameslist$GarageOutside <- ifelse(
+  is.na(ameslist$GarageOutside),
+  0,
+  ameslist$GarageOutside
+)
+
+unique(ameslist$GarageOutside)
+```
+
+
+
+# **Exercise 1: Part 1**
+```{r }
+x <- sapply(ameslist, class)
+y <- sapply(x, function(z) z == "integer")
+names(y) <- NULL
+Ames <- ameslist[ , y]
+
+Ames$Id <- NULL
+Ames$MasVnrArea <- NULL
+Ames$MiscVal <- NULL
+```
+
+
+
+# **Exercise 1: Part 2**
+```{r }
+scatterMatrix <- pairs(
+  SalePrice ~ OverallQual + OverallCond + YearBuilt + FullBath 
+    + BedroomAbvGr + TotalBsmtSF + Fireplaces + GarageCars + GarageArea + TotRmsAbvGrd
+    + YearRemodAdd + LotArea,
+  data=Ames
+)
+```
+
+
+
+# **Exercise 1: Part 3**
+```{r }
+correlateVariables <- Ames[ , c("LotArea", "OverallQual", "OverallCond", "YearBuilt", "FullBath", 
+                                "BedroomAbvGr", "TotalBsmtSF", "Fireplaces", "GarageCars", "GarageArea", 
+                                "TotRmsAbvGrd", "YearRemodAdd")]
+correlates <- cor(correlateVariables)
+correlates
+```
+
+
+
+# **Exercise 1: Part 4**
+```{r }
+plot(
+  x=Ames$GrLivArea,
+  y=Ames$SalePrice,
+  xlab="Ground Floor Living Area in Square Feet",
+  ylab="Sale Price in US Dollars"
+)
+
+
+x <- Ames$GrLivArea
+y <- Ames$SalePrice
+
+Sxy = sum((x - mean(x)) * (y - mean(y)))
+Sxx = sum((x - mean(x)) ^ 2)
+Syy = sum((y - mean(y)) ^ 2)
+
+beta_1_hat = Sxy / Sxx
+beta_0_hat = mean(y) - beta_1_hat * mean(x)
+
+abline(beta_0_hat, beta_1_hat, col="blue")
+```
+
+
+
+
+# **Exercise 2: Part 1**
+```{r }
+ameslist$GarageInside <- ifelse(
+  ameslist$GarageTypeDetchd == 0 & ameslist$GarageTypeCarPort == 0, 
+  1, 
+  0
+)
+
+ameslist$GarageInside <- ifelse(
+  is.na(ameslist$GarageInside),
+  0,
+  ameslist$GarageInside
+)
+
+indoorGarageSLR <- lm(
+  SalePrice ~ GarageInside - 1,
+  data=ameslist
+)
+summary(indoorGarageSLR)
+```
+
+
+
+# **Exercise 2: Part 2**
+```{r }
+options(na.action='na.omit')
+
+fullAmesModel <- lm(
+  SalePrice ~ .,
+  data=Ames
+)
+summary(fullAmesModel)
+```
+
+
+
+# **Exercise 2: Part 3**
+```{r }
+par(mfrow=c(2,2))
+plot(fullAmesModel)
+par(mfrow=c(1,1))
+```
+
+
+
+# **Exercise 2: Part 4**
+```{r }
+fullAmesModel2 <- lm(
+  SalePrice ~ . + LotArea:BedroomAbvGr,
+  data=Ames
+)
+summary(fullAmesModel2)
+
+fullAmesModel3 <- lm(
+  SalePrice ~ . + BedroomAbvGr:TotRmsAbvGrd,
+  data=Ames
+)
+summary(fullAmesModel3)
+
+fullAmesModel4 <- lm(
+  SalePrice ~ . + YearBuilt*YrSold,
+  data=Ames
+)
+summary(fullAmesModel4)
+```
+
+
+
+# **Exercise 2: Part 1**
+```{r }
+fullAmesModel5 <- lm(
+  SalePrice ~ . - LotArea + log2(LotArea),
+  data=Ames
+)
+summary(fullAmesModel5)
+
+fullAmesModel6 <- lm(
+  SalePrice ~ . + (OverallCond)^2 + (OverallQual)^2,
+  data=Ames
+)
+summary(fullAmesModel6)
+
+fullAmesModel7 <- lm(
+  SalePrice ~ . + sqrt(BedroomAbvGr),
+  data=Ames
+)
+summary(fullAmesModel7)
+```
