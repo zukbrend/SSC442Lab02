@@ -20,9 +20,6 @@ ameslist <- read.table(
   sep = ","
 )
 
-typeof(ameslist)
-unique(ameslist$GarageType)
-
 options(na.action='na.pass')
 GarageTemp = model.matrix(~ GarageType - 1, data=ameslist)
 
@@ -42,13 +39,12 @@ ameslist$GarageOutside <- ifelse(
   0,
   ameslist$GarageOutside
 )
-
-unique(ameslist$GarageOutside)
 ```
 
 
 
-# **Exercise 1: Part 1**
+# **Exercise 1**
+## Part 1:
 ```{r }
 x <- sapply(ameslist, class)
 y <- sapply(x, function(z) z == "integer")
@@ -58,11 +54,13 @@ Ames <- ameslist[ , y]
 Ames$Id <- NULL
 Ames$MasVnrArea <- NULL
 Ames$MiscVal <- NULL
+
+names(Ames)
 ```
 
 
 
-# **Exercise 1: Part 2**
+## Part 2
 ```{r }
 scatterMatrix <- pairs(
   SalePrice ~ OverallQual + OverallCond + YearBuilt + FullBath 
@@ -74,7 +72,7 @@ scatterMatrix <- pairs(
 
 
 
-# **Exercise 1: Part 3**
+## Part 3
 ```{r }
 correlateVariables <- Ames[ , c("LotArea", "OverallQual", "OverallCond", "YearBuilt", "FullBath", 
                                 "BedroomAbvGr", "TotalBsmtSF", "Fireplaces", "GarageCars", "GarageArea", 
@@ -85,7 +83,7 @@ correlates
 
 
 
-# **Exercise 1: Part 4**
+## Part 4
 ```{r }
 plot(
   x=Ames$GrLivArea,
@@ -111,7 +109,8 @@ abline(beta_0_hat, beta_1_hat, col="blue")
 
 
 
-# **Exercise 2: Part 1**
+# **Exercise 2**
+## Part 1
 ```{r }
 ameslist$GarageInside <- ifelse(
   ameslist$GarageTypeDetchd == 0 & ameslist$GarageTypeCarPort == 0, 
@@ -129,12 +128,11 @@ indoorGarageSLR <- lm(
   SalePrice ~ GarageInside - 1,
   data=ameslist
 )
-summary(indoorGarageSLR)
 ```
 
 
 
-# **Exercise 2: Part 2**
+## Part 2
 ```{r }
 options(na.action='na.omit')
 
@@ -147,7 +145,7 @@ summary(fullAmesModel)
 
 
 
-# **Exercise 2: Part 3**
+## Part 3
 ```{r }
 par(mfrow=c(2,2))
 plot(fullAmesModel)
@@ -156,46 +154,40 @@ par(mfrow=c(1,1))
 
 
 
-# **Exercise 2: Part 4**
+## Part 4
 ```{r }
 fullAmesModel2 <- lm(
   SalePrice ~ . + LotArea:BedroomAbvGr,
   data=Ames
 )
-summary(fullAmesModel2)
 
 fullAmesModel3 <- lm(
   SalePrice ~ . + BedroomAbvGr:TotRmsAbvGrd,
   data=Ames
 )
-summary(fullAmesModel3)
 
 fullAmesModel4 <- lm(
   SalePrice ~ . + YearBuilt*YrSold,
   data=Ames
 )
-summary(fullAmesModel4)
 ```
 
 
 
-# **Exercise 2: Part 1**
+## Part 5
 ```{r }
 fullAmesModel5 <- lm(
   SalePrice ~ . - LotArea + log2(LotArea),
   data=Ames
 )
-summary(fullAmesModel5)
 
 fullAmesModel6 <- lm(
   SalePrice ~ . + (OverallCond)^2 + (OverallQual)^2,
   data=Ames
 )
-summary(fullAmesModel6)
 
 fullAmesModel7 <- lm(
   SalePrice ~ . + sqrt(BedroomAbvGr),
   data=Ames
 )
-summary(fullAmesModel7)
 ```
