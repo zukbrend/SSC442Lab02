@@ -59,7 +59,7 @@ Ames$MiscVal <- NULL
 names(Ames)
 ```
 
-
+The values can be negative; for example, having a bedroom above the garage would be associated with a 4% decrease in sale price rather than causing the value to go up.
 
 ## Part 2:
 ```{r }
@@ -82,7 +82,7 @@ correlates <- cor(correlateVariables)
 correlates
 ```
 
-
+The correlations match our beliefs; variables such as Year Built and Overall Quality have higher correlation values (.55 and .59). This means that 55% and 59% of the variation in sale price can be explained by having better quality houses and houses built more recently.
 
 ## Part 4:
 ```{r }
@@ -107,8 +107,7 @@ beta_0_hat = mean(y) - beta_1_hat * mean(x)
 abline(beta_0_hat, beta_1_hat, col="blue")
 ```
 
-
-
+The scatterplot suggests a positive correlation between sale price and ground floor living area. The largest outlier above the regression line was a house valued at over $700,000. This is most likely explained by a combination of ground floor area along with different variables such as overall quality.
 
 # **Exercise 2**
 ## Part 1:
@@ -129,6 +128,8 @@ indoorGarageSLR <- lm(
   SalePrice ~ GarageInside - 1,
   data=ameslist
 )
+
+summary(indoorGarageSLR)
 ```
 
 
@@ -144,7 +145,7 @@ fullAmesModel <- lm(
 summary(fullAmesModel)
 ```
 
-
+Some predictors have stronger relationships with sale price. These values add more or less value to sale price based on whether or not they are included in a given home. Overall quality, full bath, year built, and garage cars have statistically significant relationships with the response. The coefficient for year built is 0.59. This means that 59% of the variation in sale price can be attributed to the year that the house was built.
 
 ## Part 3:
 ```{r }
@@ -153,7 +154,7 @@ plot(fullAmesModel)
 par(mfrow=c(1,1))
 ```
 
-
+The fit contains too many variables to make an accurate prediction of the average sale price based on ground level living area. Additionally, some outliers are far above and below the fitted regression line. This suggests that some houses sold for much more or much less than the predicted value for a house of that size. The plot does not account for changes in sale price based on seclusion or population density within the area.
 
 ## Part 4:
 ```{r }
@@ -173,7 +174,7 @@ fullAmesModel4 <- lm(
 )
 ```
 
-
+Lot Area, Overall Quality, Overall Condition, Basement Full Bath, Kitchen Above Ground, Total Rooms Above Ground, Garage Cars, Screen Porch, and Pool Area are all statistically significant.
 
 ## Part 5:
 ```{r }
@@ -192,3 +193,5 @@ fullAmesModel7 <- lm(
   data=Ames
 )
 ```
+
+Lot area becomes more significant when the log(x) is taken of the variable. Overall condition becomes less significant when it is squared. Bedroom above ground becomes less significant when the square root is taken.
