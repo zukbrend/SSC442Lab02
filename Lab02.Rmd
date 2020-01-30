@@ -61,7 +61,7 @@ names(Ames)
 
 
 
-## Part 2
+## Part 2:
 ```{r }
 scatterMatrix <- pairs(
   SalePrice ~ OverallQual + OverallCond + YearBuilt + FullBath 
@@ -73,7 +73,7 @@ scatterMatrix <- pairs(
 
 
 
-## Part 3
+## Part 3:
 ```{r }
 correlateVariables <- Ames[ , c("LotArea", "OverallQual", "OverallCond", "YearBuilt", "FullBath", 
                                 "BedroomAbvGr", "TotalBsmtSF", "Fireplaces", "GarageCars", "GarageArea", 
@@ -84,7 +84,7 @@ correlates
 
 
 
-## Part 4
+## Part 4:
 ```{r }
 plot(
   x=Ames$GrLivArea,
@@ -111,7 +111,7 @@ abline(beta_0_hat, beta_1_hat, col="blue")
 
 
 # **Exercise 2**
-## Part 1
+## Part 1:
 ```{r }
 ameslist$GarageInside <- ifelse(
   ameslist$GarageTypeDetchd == 0 & ameslist$GarageTypeCarPort == 0, 
@@ -133,7 +133,7 @@ indoorGarageSLR <- lm(
 
 
 
-## Part 2
+## Part 2:
 ```{r }
 options(na.action='na.omit')
 
@@ -146,7 +146,7 @@ summary(fullAmesModel)
 
 
 
-## Part 3
+## Part 3:
 ```{r }
 par(mfrow=c(2,2))
 plot(fullAmesModel)
@@ -155,7 +155,7 @@ par(mfrow=c(1,1))
 
 
 
-## Part 4
+## Part 4:
 ```{r }
 fullAmesModel2 <- lm(
   SalePrice ~ . + LotArea:BedroomAbvGr,
@@ -175,7 +175,7 @@ fullAmesModel4 <- lm(
 
 
 
-## Part 5
+## Part 5:
 ```{r }
 fullAmesModel5 <- lm(
   SalePrice ~ . - LotArea + log2(LotArea),
